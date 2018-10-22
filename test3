@@ -1,2 +1,16 @@
+#!/bin/bash
+echo "Please enter the user ID to be created:"
+read j
+echo "Please enter user Lable:"
+read k
+echo "Please enter the password you wish to set for this user:"
+read l
+for i in `cat server_list`
+do
+echo "==============================" >> output7
+echo "=============================="
+echo $i >> output7
+ssh -t $i "sudo mkuser pgrp=staff groups=iamprogr home=/home/$j  gecos='$k' $j ; echo $j:$l | sudo passwd $j ; id $j ; sudo cat /etc/passwd |grep -i $j"
+done
+echo "The output is placed in file : output7"
 
-This is the new file created in remote repository.
